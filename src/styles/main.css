@@ -1,0 +1,43 @@
+body {
+  margin: 2em auto;
+  width: 620px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.viewport {
+  background: rgba(71, 228, 162, 0.5);
+  border: 1px solid rgb(71, 228, 162);
+  position: relative;
+}
+
+.viewport-image {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 0;
+  top: 0;
+}
+
+.control-panel {
+  margin: 2em 0;
+}
+
+button {
+  font-size: 1.25em;
+  padding: 1em;
+  color: #222;
+  text-decoration: none;
+  border-radius: 2px;
+  margin: 0 0.25em;
+  width: 110px;
+}
+
+.create-button {
+  border: 1px solid rgb(7, 94, 71);
+  background-color: rgb(84, 201, 74);
+}
+
+.clear-button {
+  border: 1px solid rgb(128, 28, 15);
+  background-color: rgb(201, 78, 75);
+}
