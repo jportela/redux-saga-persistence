@@ -1,5 +1,4 @@
 node_modules
-static
 
 *.log
 npm-debug.log*
