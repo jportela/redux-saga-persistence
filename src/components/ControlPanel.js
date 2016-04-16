@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, ButtonGroup, Label } from 'react-bootstrap';
 
 class ControlPanel extends React.Component {
   constructor() {
@@ -20,11 +21,13 @@ class ControlPanel extends React.Component {
   }
 
   render() {
-    const unsavedChanges = this.props.unsavedChanges ? <span>You have unsaved changes!</span> : null;
+    const unsavedChanges = this.props.unsavedChanges ? <Label bsStyle="warning">Unsaved Changes</Label> : null;
     return (
-    <div className='control-panel'>
-      <button className='create-button' onClick={this.handleCreateImage}>Create</button>
-      <button className='clear-button' onClick={this.handleClearViewport}>Clear</button>
+    <div className="control-panel">
+      <ButtonGroup>
+        <Button bsStyle="primary" onClick={this.handleCreateImage}>Create</Button>
+        <Button bsStyle="danger" onClick={this.handleClearViewport}>Clear</Button>
+      </ButtonGroup>
       {unsavedChanges}
     </div>
     );
