@@ -1,15 +1,17 @@
 {
   "extends": "eslint:recommended",
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true,
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "env": {
     "browser": true,
     "es6": true,
     "node": true
   },
-  "parser": "babel-eslint",
   "rules": {
     "indent": ["error", 2],
     "quotes": [2, "single"],
