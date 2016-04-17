@@ -2,9 +2,9 @@
 
 This example shows how a persistence mechanism can be implemented by using Redux Sagas.
 
-Check the blog post on it here:
+Check the code for the persistence saga [here](https://github.com/jportela/redux-saga-persistence/blob/master/src/sagas/persistence.js). I've written a blog post detailing the process on how to implement it [here]().
 
-And see the example at work here: http://www.joaoportela.com/redux-saga-persistence
+Watch the example at work here: http://www.joaoportela.com/redux-saga-persistence
 
 ## Running the example
 

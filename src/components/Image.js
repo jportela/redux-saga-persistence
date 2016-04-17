@@ -1,72 +1,71 @@
 import React from 'react';
-import { DragSource } from 'react-dnd';
 
-const imageSource = {
-  beginDrag(props) {
-    return {
-      id: props.id,
-      x: props.x,
-      y: props.y,
-      viewportWidth: props.viewportWidth,
-      viewportHeight: props.viewportHeight
-    };
-  },
-  endDrag(props, monitor) {
-    var item = monitor.getItem();
-    let x = item.x + monitor.getSourceClientOffset().x - monitor.getInitialSourceClientOffset().x;
-    let y = item.y + monitor.getSourceClientOffset().y - monitor.getInitialSourceClientOffset().y;
-
-    if (x < 0) {
-      x = 0;
-    }
-    if (x > item.viewportWidth - 100) {
-      x = item.viewportWidth - 100;
-    }
-
-    if (y < 0) {
-      y = 0;
-    }
-    if (y > item.viewportHeight - 100) {
-      y = item.viewportHeight - 100;
-    }
-
-    props.moveImage({
-      id: item.id,
-      x: x,
-      y: y
-    });
-  }
-};
-
-function collect(connect) {
-  return {
-    connectDragSource: connect.dragSource()
-  };
-}
-
-class Image extends React.Component {
+export default class Image extends React.Component {
   constructor() {
     super();
-    this.handleImageMove = this.handleImageMove.bind(this);
+    this.onMouseDown = this.onMouseDown.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
+    this.onMouseUp = this.onMouseUp.bind(this);
   }
 
-  handleImageMove() {
+  componentWillUnmount() {
+
+    window.removeEventListener('mouseup', this.onMouseUp);
+    window.removeEventListener('mousemove', this.onMouseMove);
+  }
+
+  // calculate relative position to the mouse and set dragging=true
+  onMouseDown (e) {
+    // only left mouse button
+    if (e.button !== 0) {
+      return;
+    }
+
+    this.initialPosition = {
+      x: e.pageX - this.props.x,
+      y: e.pageY - this.props.y
+    };
+
+    this.isDragging = true;
+    window.addEventListener('mousemove', this.onMouseMove);
+    window.addEventListener('mouseup', this.onMouseUp);
+  }
+
+  onMouseUp () {
+    this.isDragging = false;
+    window.removeEventListener('mousemove', this.onMouseUp);
+    window.removeEventListener('mouseup', this.onMouseUp);
+  }
+
+  onMouseMove (e) {
+    if (!this.isDragging) {
+      return;
+    }
+
+    const maxX = this.props.viewportWidth - this.props.width;
+    const maxY = this.props.viewportHeight - this.props.height;
+
+    let x = boundPoint(e.pageX - this.initialPosition.x, 0, maxX);
+    let y = boundPoint(e.pageY - this.initialPosition.y, 0, maxY);
+
     this.props.moveImage({
       id: this.props.id,
-      x: this.props.x,
-      y: this.props.y
+      x,
+      y
     });
   }
 
   render() {
-    const { connectDragSource, x, y } = this.props;
-
+    const { x, y, width, height } = this.props;
     const styles = {
+      width,
+      height,
       transform: `translate3d(${x}px, ${y}px, 0)`,
       background: this.props.color
     };
-    return connectDragSource(<div
+    return (<div
       className='viewport-image'
+      onMouseDown={this.onMouseDown}
       style={styles} />
     );
   }
@@ -77,10 +76,19 @@ Image.propTypes = {
   color: React.PropTypes.string,
   x: React.PropTypes.number,
   y: React.PropTypes.number,
+  width: React.PropTypes.number,
+  height: React.PropTypes.number,
   viewportWidth: React.PropTypes.number,
   viewportHeight: React.PropTypes.number,
-  moveImage: React.PropTypes.func,
-  connectDragSource: React.PropTypes.func.isRequired
+  moveImage: React.PropTypes.func
 };
 
-export default DragSource('IMAGE', imageSource, collect)(Image);
+function boundPoint(x, minX, maxX) {
+  if (x < minX) {
+    return minX;
+  }
+  else if (x > maxX) {
+    return maxX;
+  }
+  return x;
+}
