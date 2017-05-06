@@ -1,4 +1,4 @@
-import { call, fork, put, select, take } from 'redux-saga/effects';
+import { call, spawn, put, select, take } from 'redux-saga/effects';
 import * as types from '../constants/ActionTypes';
 import { serverSave, signalUnsavedChanges, signalSavedChanges } from '../actions';
 import * as PersistenceEngine from './persistence/engine';
@@ -23,12 +23,8 @@ function *save(state, action) {
 }
 
 function *debounceSave(state) {
-  try {
-    yield call(delay, DEBOUNCE_TIME);
-    yield call(save, state);
-  } catch (e) {
-    // empty exception handler because the cancel effect throws an exception
-  }
+  yield call(delay, DEBOUNCE_TIME);
+  yield call(save, state);
 }
 
 // signals to the UI that there are unsaved changes
@@ -59,7 +55,7 @@ export default function* persistenceSaga() {
     yield unsavedLock.execute();
 
     if (type === PersistenceType.IMMEDIATE) {
-      yield fork(save, state);	// save immediately
+      yield spawn(save, state);	// save immediately
     } else if (type === PersistenceType.DEBOUNCE) {
       // a new debounce timer is created
       yield debounceLock.execute(state, action);

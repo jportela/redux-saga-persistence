@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Image extends React.Component {
   constructor() {
@@ -72,15 +73,15 @@ export default class Image extends React.Component {
 }
 
 Image.propTypes = {
-  id: React.PropTypes.number,
-  color: React.PropTypes.string,
-  x: React.PropTypes.number,
-  y: React.PropTypes.number,
-  width: React.PropTypes.number,
-  height: React.PropTypes.number,
-  viewportWidth: React.PropTypes.number,
-  viewportHeight: React.PropTypes.number,
-  moveImage: React.PropTypes.func
+  id: PropTypes.number,
+  color: PropTypes.string,
+  x: PropTypes.number,
+  y: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  viewportWidth: PropTypes.number,
+  viewportHeight: PropTypes.number,
+  moveImage: PropTypes.func
 };
 
 function boundPoint(x, minX, maxX) {

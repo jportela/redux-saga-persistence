@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions';
@@ -24,8 +25,8 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-  viewport: React.PropTypes.object,
-  actions: React.PropTypes.object
+  viewport: PropTypes.object,
+  actions: PropTypes.object
 };
 
 function mapStateToProps(state) {

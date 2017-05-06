@@ -1,11 +1,11 @@
-import { fork } from 'redux-saga/effects';
+import { fork, all } from 'redux-saga/effects';
 
 import load from './load';
 import persistence from './persistence';
 
 export default function* root() {
-  yield[
+  yield all([
     fork(load),
     fork(persistence)
-  ];
+  ]);
 }

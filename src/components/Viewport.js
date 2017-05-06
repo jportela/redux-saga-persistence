@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Image from './Image';
 
 class Viewport extends React.Component {
@@ -36,10 +37,10 @@ class Viewport extends React.Component {
 }
 
 Viewport.propTypes = {
-  width: React.PropTypes.number,
-  height: React.PropTypes.number,
-  images: React.PropTypes.array,
-  moveImage: React.PropTypes.func
+  width: PropTypes.number,
+  height: PropTypes.number,
+  images: PropTypes.array,
+  moveImage: PropTypes.func
 };
 
 export default Viewport;
