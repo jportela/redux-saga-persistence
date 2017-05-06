@@ -6,6 +6,19 @@ Check the code for the persistence saga [here](https://github.com/jportela/redux
 
 Watch the example at work here: http://www.joaoportela.com/redux-saga-persistence
 
+## Update Notes
+
+At the time the blog post was created, the `redux-saga` project was running at version `0.9.5`. Over the past year the library changed quite a bit, with some breaking changes, so I updated the example code to work with the most recent version of the library (`15.0.3` at the moment). The blog post wasn't updated though, if you want to check the exact version of the example that was working on `0.9.5` check https://github.com/jportela/redux-saga-persistence/tree/0.9.5
+
+The following changes were done:
+
+* Changed from `fork` to `spawn`, because we want to keep the process detached
+* Added the `sagaMiddleware.run(sagas);` to the store
+* Simplified the `Lock` system by removing `isLocked` since the `<Task>.isRunning()` method provides similar functionality
+* Removed the try/catch block in `debounceSave` because 
+* Updated webpack from v1 to v2
+* Added yarn as the dependency manager
+
 ## Scope
 
 This persistence mechanism uses the local storage as an example, but it's intended to be used with a server (for true asynchronous persistence). It assumes that you’ll save the whole state to the server (although you can easily select just a subset of it). The save operation follows these requirements:
@@ -20,7 +33,7 @@ This persistence mechanism uses the local storage as an example, but it's intend
 This example was tested using Node 4 for the build/dev process.
 
 1. Clone this repository
-2. Run `npm install`
+2. Run `yarn install` or `npm install`
 3. Run `npm start`
 
 The example should be available at http://localhost:8080

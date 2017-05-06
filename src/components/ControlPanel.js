@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, ButtonGroup, Label } from 'react-bootstrap';
 
 class ControlPanel extends React.Component {
@@ -35,9 +36,9 @@ class ControlPanel extends React.Component {
 }
 
 ControlPanel.propTypes = {
-  clearViewport: React.PropTypes.func,
-  createImage: React.PropTypes.func,
-  unsavedChanges: React.PropTypes.bool
+  clearViewport: PropTypes.func,
+  createImage: PropTypes.func,
+  unsavedChanges: PropTypes.bool
 };
 
 export default ControlPanel;

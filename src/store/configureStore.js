@@ -11,6 +11,8 @@ export default function configureStore(initialState) {
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ));
 
+  sagaMiddleware.run(sagas);
+
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {

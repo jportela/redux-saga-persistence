@@ -5,7 +5,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var PROD = process.env.NODE_ENV === 'production';
 
 var plugins = [
-  new webpack.optimize.OccurenceOrderPlugin(),
   new ExtractTextPlugin('style.css')
 ];
 
@@ -28,13 +27,13 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: [ 'babel' ],
+        loaders: [ 'babel-loader' ],
         exclude: /node_modules/,
         include: __dirname
       },
       {
         test: /\.css?$/,
-        loader:  ExtractTextPlugin.extract('style', 'css'),
+        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }),
         include: __dirname
       }
     ]
