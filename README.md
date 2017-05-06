@@ -19,6 +19,8 @@ The following changes were done:
 * Updated webpack from v1 to v2
 * Added yarn as the dependency manager
 
+All changes can be seen in this PR: https://github.com/jportela/redux-saga-persistence/pull/2
+
 ## Scope
 
 This persistence mechanism uses the local storage as an example, but it's intended to be used with a server (for true asynchronous persistence). It assumes that you’ll save the whole state to the server (although you can easily select just a subset of it). The save operation follows these requirements:
