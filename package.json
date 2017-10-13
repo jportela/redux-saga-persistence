@@ -17,10 +17,10 @@
     "babel-polyfill": "^6.23.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.8",
-    "react": "^15.5.4",
+    "react": "^16.0.0",
     "react-addons-update": "^15.5.2",
     "react-bootstrap": "^0.31.0",
-    "react-dom": "^15.5.4",
+    "react-dom": "^16.0.0",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-saga": "^0.15.3"
