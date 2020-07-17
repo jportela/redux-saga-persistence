@@ -33,7 +33,7 @@
     "babel-preset-react-hmre": "1.1.1",
     "babel-register": "^6.24.1",
     "css-loader": "^0.28.1",
-    "eslint": "^3.19.0",
+    "eslint": "^4.18.2",
     "eslint-plugin-react": "^7.0.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "style-loader": "^0.17.0",
