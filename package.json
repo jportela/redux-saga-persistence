@@ -15,7 +15,7 @@
   "homepage": "http://engineering.invisionapp.com/",
   "dependencies": {
     "babel-polyfill": "^6.23.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "prop-types": "^15.5.8",
     "react": "^16.0.0",
     "react-addons-update": "^15.5.2",
